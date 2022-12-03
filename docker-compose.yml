@@ -6,7 +6,8 @@ services:
     environment:
       POSTGRES_PASSWORD: postgrespassword
   graphql-engine:
-    image: hasura/graphql-engine:latest.cli-migrations-v3
+    # Build ./hasura/Dockerfile
+    build: ./hasura
     ports:
     - "8080:8080"
     depends_on:
