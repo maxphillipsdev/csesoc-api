@@ -39,5 +39,3 @@ jobs:
           context: ./hasura
           push: ${{ github.event_name != 'pull_request' }}
           tags: hasura
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
