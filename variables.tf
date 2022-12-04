@@ -3,3 +3,9 @@ variable "ecr_repository_name" {
   type        = string
   default     = "my-ecr-repository"
 }
+
+variable "docker_registry" {
+  description = "The docker registry"
+  type        = string
+  default     = "ghcr.io/maxphillipsdev"
+}

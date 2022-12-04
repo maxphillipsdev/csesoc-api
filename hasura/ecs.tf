@@ -1,9 +1,9 @@
-resource "aws_ecs_cluster" "ecs-cluster" {
-  name = "hasura-ecs-cluster"
+resource "aws_ecs_cluster" "ecs_cluster" {
+  name = "hasura_ecs_cluster"
 }
 
-resource "aws_ecs_task_definition" "ecs-task-definition" {
-  family = "hasura-ecs-task-definition"
+resource "aws_ecs_task_definition" "ecs_task_definition" {
+  family = "hasura_ecs_task_definition"
   container_definitions = templatefile("./hasura/ecs_template.json.tpl", {
     app_image      = var.app_image
     app_port       = var.app_port
@@ -15,13 +15,13 @@ resource "aws_ecs_task_definition" "ecs-task-definition" {
   network_mode             = "awsvpc"
   cpu                      = "256"
   memory                   = "512"
-  execution_role_arn       = aws_iam_role.ecs-task-execution-role.arn
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 }
 
-resource "aws_ecs_service" "ecs-service" {
-  name            = "hasura-ecs-service"
-  cluster         = aws_ecs_cluster.ecs-cluster.id
-  task_definition = aws_ecs_task_definition.ecs-task-definition.arn
+resource "aws_ecs_service" "ecs_service" {
+  name            = "hasura_ecs_service"
+  cluster         = aws_ecs_cluster.ecs_cluster.id
+  task_definition = aws_ecs_task_definition.ecs_task_definition.arn
   desired_count   = 1
   launch_type     = "FARGATE"
 }

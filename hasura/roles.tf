@@ -1,5 +1,5 @@
 # ECS task execution role data
-data "aws_iam_policy_document" "ecs-task-execution-role" {
+data "aws_iam_policy_document" "ecs_task_execution_role" {
   version = "2012-10-17"
   statement {
     sid     = ""
@@ -14,13 +14,13 @@ data "aws_iam_policy_document" "ecs-task-execution-role" {
 }
 
 # ECS task execution role
-resource "aws_iam_role" "ecs-task-execution-role" {
-  name               = "hasura-ecs-task-execution-role"
-  assume_role_policy = data.aws_iam_policy_document.ecs-task-execution-role.json
+resource "aws_iam_role" "ecs_task_execution_role" {
+  name               = "hasura_ecs_task_execution_role"
+  assume_role_policy = data.aws_iam_policy_document.ecs_task_execution_role.json
 }
 
 # ECS task execution role policy attachment
-resource "aws_iam_role_policy_attachment" "ecs-task-execution-role" {
-  role       = aws_iam_role.ecs-task-execution-role.name
+resource "aws_iam_role_policy_attachment" "ecs_task_execution_role" {
+  role       = aws_iam_role.ecs_task_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
