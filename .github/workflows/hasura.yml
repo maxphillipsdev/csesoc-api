@@ -2,6 +2,8 @@ name: Hasura Deployment
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - "hasura/**"
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
 
