@@ -1,7 +1,7 @@
 module "hasura" {
   source = "./hasura"
 
-  app_image      = "${module.ecr.repository_url}/hasura:latest"
+  app_image      = "${var.docker_registry}/hasura:latest"
   app_port       = 8080
   fargate_cpu    = 256
   fargate_memory = 512
