@@ -1,6 +1,11 @@
 version: '3.6'
 services:
-  postgres:
+  metadata-db:
+    image: postgres:12
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+  timetable-db:
     image: postgres:12
     restart: always
     environment:
@@ -10,14 +15,15 @@ services:
     ports:
     - "8080:8080"
     depends_on:
-    - "postgres"
+    - "timetable-db"
+    - "metadata-db"
     restart: always
     volumes:
       - ./hasura/migrations:/hasura-migrations
       - ./hasura/metadata:/hasura-metadata
     environment:
       ## postgres database to store Hasura metadata
-      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
+      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgrespassword@metadata-db:5432/postgres
       ## enable the console served by server
       HASURA_GRAPHQL_ENABLE_CONSOLE: "false" 
       ## enable debugging mode. It is recommended to disable this in production
