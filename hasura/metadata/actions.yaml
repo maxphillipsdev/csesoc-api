@@ -1,6 +1,22 @@
-actions: []
+actions:
+  - name: demo
+    definition:
+      kind: ""
+      handler: http://demo-service:3000
+      request_transform:
+        method: GET
+        query_params: {}
+        request_headers:
+          add_headers: {}
+          remove_headers:
+            - content-type
+        template_engine: Kriti
+        url: '{{$base_url}}/'
+        version: 2
+    comment: Demo
 custom_types:
   enums: []
   input_objects: []
-  objects: []
+  objects:
+    - name: SampleOutput
   scalars: []

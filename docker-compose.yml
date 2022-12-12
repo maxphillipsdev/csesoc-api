@@ -10,6 +10,13 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: postgrespassword
+  demo-service:
+    build: ./apps/demo-service
+    restart: always
+    environment:
+      PORT: 3000
+    ports:
+      - 3000:3000
   graphql-engine:
     image: hasura/graphql-engine:latest.cli-migrations-v3
     ports:
