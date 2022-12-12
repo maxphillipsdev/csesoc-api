@@ -6,4 +6,10 @@ FROM hasura/graphql-engine:latest.cli-migrations-v3
 COPY ./migration[s]/ /hasura-migrations
 COPY ./metadata /hasura-metadata
 
+# Enable the console
+ENV HASURA_GRAPHQL_ENABLE_CONSOLE=true
 
+CMD graphql-engine \
+  --metadata-database-url $DATABASE_URL \
+  serve \
+  --server-port $PORT
